@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
-import { CommentModule } from './comment/comment.module';
+// import { CommentModule } from './comment/comment.module';
 import { PostModule } from './post/post.module';
 import { LikeModule } from './like/like.module';
 import { User } from './entities/user.entity';
@@ -13,11 +13,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RavenInterceptor, RavenModule } from 'nest-raven';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+// import { CommentModule } from './comment/comment.module';
 @Module({
     imports: [
         ConfigModule.forRoot({ isGlobal: true }),
         UserModule,
-        CommentModule,
+        // CommentModule,
         PostModule,
         LikeModule,
         RavenModule,
@@ -32,7 +33,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
                     password: configService.get('DB_PASSWORD'),
                     database: configService.get('DB_DATABASE'),
                     entities: [User, Post, Comment, PostLike],
-                    synchronize: false,
+                    synchronize: true,
                     charset: 'utf8mb4',
                     logging: false,
                 };
