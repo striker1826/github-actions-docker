@@ -5,7 +5,7 @@ FROM node:16.14
 WORKDIR /app
 
 # 의존성 설치
-COPY package.json package-lock.json ../../
+COPY package.json package-lock.json ./
 RUN npm ci
 
 # 소스코드 복사 및 빌드
