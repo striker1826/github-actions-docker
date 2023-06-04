@@ -1,4 +1,5 @@
 name: learn-githubActions-with-docker
+
 on:
     push:
         branches: ['master']
@@ -9,12 +10,17 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-        - uses: actions/checkout@v3
-        - name: Setup node.js 16.x
-        uses: actions/setup-node@v3
-        with:
-            node-version: 16.x
-            cache: 'npm'
-        - run: npm ci
-        - run: npm run build --if-present
-            
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name: Setup Node.js 16.x
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16.x
+                  cache: 'npm'
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build project
+              run: npm run build --if-present
