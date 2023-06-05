@@ -10,25 +10,25 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout repository
-              uses: actions/checkout@v3
+            # - name: Checkout repository
+            #   uses: actions/checkout@v3
 
-            - name: Setup Node.js 16.x
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 16.x
-                  cache: 'npm'
+            # - name: Setup Node.js 16.x
+            #   uses: actions/setup-node@v3
+            #   with:
+            #       node-version: 16.x
+            #       cache: 'npm'
 
-            - name: Install dependencies
-              run: npm ci
+            # - name: Install dependencies
+            #   run: npm ci
 
-            - name: Build project
-              run: npm run build --if-present
+            # - name: Build project
+            #   run: npm run build --if-present
 
             - name: Docker build
               run: |
                   docker login -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
-                  docker build --platform amd64 -f Dockerfile -t docker_test_github ./
+                  docker build --platform amd64 -f Dockerfile -t docker_test_github ../../
                   docker tag docker_test_github alstjq1826/docker_test_github
                   docker push alstjq1826/docker_test_github
             - name: Run scripts in server
@@ -43,4 +43,4 @@ jobs:
                       sudo docker pull alstjq1826/docker_test_github
                       sudo docker stop app
                       sudo docker rm app
-                      sudo docker run --name app -d -p 8080:8080 alstjq1826/docker_test_github
+                      sudo docker run --name apple -d -p 8080:8080 alstjq1826/docker_test_github
