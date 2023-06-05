@@ -22,23 +22,23 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
         PostModule,
         LikeModule,
         RavenModule,
-        TypeOrmModule.forRootAsync({
-            inject: [ConfigService],
-            useFactory: async (configService: ConfigService) => {
-                return {
-                    type: 'mysql',
-                    host: 'localhost',
-                    port: 3306,
-                    username: configService.get('DB_USERNAME'),
-                    password: configService.get('DB_PASSWORD'),
-                    database: configService.get('DB_DATABASE'),
-                    entities: [User, Post, Comment, PostLike],
-                    synchronize: true,
-                    charset: 'utf8mb4',
-                    logging: false,
-                };
-            },
-        }),
+        // TypeOrmModule.forRootAsync({
+        //     inject: [ConfigService],
+        //     useFactory: async (configService: ConfigService) => {
+        //         return {
+        //             type: 'mysql',
+        //             host: 'localhost',
+        //             port: 3306,
+        //             username: configService.get('DB_USERNAME'),
+        //             password: configService.get('DB_PASSWORD'),
+        //             database: configService.get('DB_DATABASE'),
+        //             entities: [User, Post, Comment, PostLike],
+        //             synchronize: true,
+        //             charset: 'utf8mb4',
+        //             logging: false,
+        //         };
+        //     },
+        // }),
     ],
     controllers: [AppController],
     providers: [AppService, { provide: APP_INTERCEPTOR, useValue: new RavenInterceptor() }],

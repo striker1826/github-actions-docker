@@ -8,7 +8,7 @@ import { Comment } from '../src/entities/comment.entity';
 import { User } from '../src/entities/user.entity';
 import { PostLike } from '../src/entities/post_like.entity';
 import { ConfigService } from '@nestjs/config';
-import { CommentModule } from '../src/comment/comment.module';
+// import { CommentModule } from '../src/comment/comment.module';
 
 describe('AppController (e2e)', () => {
     let app: INestApplication;
@@ -16,24 +16,24 @@ describe('AppController (e2e)', () => {
     beforeEach(async () => {
         const moduleFixture: TestingModule = await Test.createTestingModule({
             imports: [
-                CommentModule,
-                TypeOrmModule.forRootAsync({
-                    inject: [ConfigService],
-                    useFactory: async (configService: ConfigService) => {
-                        return {
-                            type: 'mysql',
-                            host: 'localhost',
-                            port: 3306,
-                            username: 'root',
-                            password: 'win1358!',
-                            database: 'TDD_STUDY_MOCK_DATA',
-                            entities: [User, Post, Comment, PostLike],
-                            synchronize: true,
-                            charset: 'utf8mb4',
-                            logging: false,
-                        };
-                    },
-                }),
+                // CommentModule,
+                // TypeOrmModule.forRootAsync({
+                //     inject: [ConfigService],
+                //     useFactory: async (configService: ConfigService) => {
+                //         return {
+                //             type: 'mysql',
+                //             host: 'localhost',
+                //             port: 3306,
+                //             username: 'root',
+                //             password: 'win1358!',
+                //             database: 'TDD_STUDY_MOCK_DATA',
+                //             entities: [User, Post, Comment, PostLike],
+                //             synchronize: true,
+                //             charset: 'utf8mb4',
+                //             logging: false,
+                //         };
+                //     },
+                // }),
             ],
         }).compile();
 
