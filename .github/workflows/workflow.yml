@@ -37,7 +37,7 @@ jobs:
                   key: ${{ secrets.SSH_KEY }}
                   host: ${{ secrets.HOST }}
                   username: ubuntu
-                  port: 3000
+                  port: 22
                   script: |
                       docker pull image alstjq1826/docker_test_github
-                      docker run -d -p 3000:3000 alstjq1826/docker_test_github
+                      docker run -d -p 8080:8080 alstjq1826/docker_test_github
