@@ -25,19 +25,19 @@ jobs:
             - name: Build project
               run: npm run build --if-present
 
-            - name: Docker build
-              run: |
-                  docker login -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
-                  docker build --platform amd64 -f Dockerfile -t docker_test_github ./
-                  docker tag docker_test_github alstjq1826/docker_test_github
-                  docker push alstjq1826/docker_test_github
+            # - name: Docker build
+            #   run: |
+            #       docker login -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
+            #       docker build --platform amd64 -f Dockerfile -t docker_test_github ./
+            #       docker tag docker_test_github alstjq1826/docker_test_github
+            #       docker push alstjq1826/docker_test_github
             - name: Run scripts in server
               uses: appleboy/ssh-action@master
               with:
                   key: ${{ secrets.SSH_KEY }}
                   host: ${{ secrets.HOST }}
                   username: ubuntu
-                  port: 8080
+                  port: 3000
                   script: |
                       docker pull image alstjq1826/docker_test_github
-                      docker run -d -p 8080:8080 alstjq1826/docker_test_github
+                      docker run -d -p 3000:3000 alstjq1826/docker_test_github
