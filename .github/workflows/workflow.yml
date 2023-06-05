@@ -39,5 +39,5 @@ jobs:
                   username: ubuntu
                   port: 22
                   script: |
-                      docker pull alstjq1826/docker_test_github
-                      docker run -d -p 8080:8080 alstjq1826/docker_test_github
+                      sudo docker pull alstjq1826/docker_test_github
+                      sudo docker run -d -p 8080:8080 alstjq1826/docker_test_github
